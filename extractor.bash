@@ -4,9 +4,6 @@ echo -n "" > mem_report.log
 echo -n "" > script_report.log
 echo -n "" > five_report.log
 
-# while [[ ! -z $(ps -eo pid | grep -P "$script_pid$") ]]
-# while [[ "$(ps h $script_pid | wc -c)" != "0" ]] # better
-
 while [[ "$(ps h $script_pid | wc -c)" != "0" ]]; do
   ### getting data
   script_pid=$(cat .script_pid | grep -P "\d+") # get a pid of the script
@@ -45,7 +42,7 @@ while [[ "$(ps h $script_pid | wc -c)" != "0" ]]; do
   sc_cpu=$(echo "$script_line" | cut -d" " -f9)
   sc_mem=$(echo "$script_line" | cut -d" " -f10)
 
-  result=$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
+  result=$script_pid" "$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
   echo "$result" >> script_report.log # write to log
 
   ### extract info about the first five processes
