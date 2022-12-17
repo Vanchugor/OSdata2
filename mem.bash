@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo -n "$$" > .script_pid
 echo -n "" > report.log
 counter=0
 array=()
