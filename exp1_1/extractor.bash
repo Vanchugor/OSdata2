@@ -6,6 +6,7 @@ echo -n "" > five_report.log
 
 script_pid=$(cat .script_pid | grep -P "\d+") # get a pid of the script
 
+result=""
 while [[ "$(ps h $script_pid | wc -c)" != "0" ]]; do
   ### getting data
   snapshot_full=$(top -b -d 0.01 | head -200) # to get all the data
@@ -17,7 +18,6 @@ while [[ "$(ps h $script_pid | wc -c)" != "0" ]]; do
   mem_line=$(echo "$memory_info" | head -1)
   swap_line=$(echo "$memory_info" | tail -1)
 
-  result=""
   mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
   mem_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
   mem_used=$(echo "$mem_line" | grep -o -P "\d+\.\d+ used" | cut -d" " -f1)

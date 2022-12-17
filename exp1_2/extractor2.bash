@@ -8,6 +8,7 @@ echo -n "" > top_five_report.log
 script_pid1=$(cat .script_pid1 | grep -P "\d+") # get a pid of 1st the script
 script_pid2=$(cat .script_pid2 | grep -P "\d+") # get a pid of 2nd the script
 
+result=""
 while [[ "$(ps h $script_pid1 | wc -c)" != "0" || "$(ps h $script_pid2 | wc -c)" != "0" ]]; do
   ### getting data
   snapshot_full=$(top -b -d 0.01 | head -200) # to get all the data
@@ -19,7 +20,6 @@ while [[ "$(ps h $script_pid1 | wc -c)" != "0" || "$(ps h $script_pid2 | wc -c)"
   mem_line=$(echo "$memory_info" | head -1)
   swap_line=$(echo "$memory_info" | tail -1)
 
-  result=""
   mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
   mem_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
   mem_used=$(echo "$mem_line" | grep -o -P "\d+\.\d+ used" | cut -d" " -f1)
