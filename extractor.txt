@@ -1,0 +1,25 @@
+#!/bin/bash
+
+snapshot=$(top -b -d 0.01 | head -12)
+echo "$snapshot"
+
+memory_info=$(echo "$(echo "$snapshot" | tail -9 | head -2)")
+mem_line=$(echo "$memory_info" | head -1)
+swap_line=$(echo "$memory_info" | tail -1)
+
+result=""
+
+mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+mem_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
+mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+
+swap_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+swap_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
+swap_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+swap_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
+
+
+
+
+# echo "$mem_total"
