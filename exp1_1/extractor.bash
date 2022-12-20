@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo -n "" > mem_report.log
-echo -n "" > script_report.log
-echo -n "" > five_report.log
+echo "mem_total mem_free mem_used mem_buff swap_total swap_free swap_used swap_avail" > mem_report.log
+echo "pid nice virt res shr status cpu mem" > script_report.log
+echo "1 2 3 4 5" > five_report.log
 
 script_pid=$(cat .script_pid | grep -P "\d+") # get a pid of the script
 
@@ -18,15 +18,15 @@ while [[ "$(ps h $script_pid | wc -c)" != "0" ]]; do
   mem_line=$(echo "$memory_info" | head -1)
   swap_line=$(echo "$memory_info" | tail -1)
 
-  mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
-  mem_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
-  mem_used=$(echo "$mem_line" | grep -o -P "\d+\.\d+ used" | cut -d" " -f1)
-  mem_buff=$(echo "$mem_line" | grep -o -P "\d+\.\d+ buff" | cut -d" " -f1)
+  mem_total=$(echo "$mem_line" | grep -o -P "\d+\.\d+g? total" | cut -d" " -f1)
+  mem_free=$(echo "$mem_line" | grep -o -P "\d+\.\d+g? free" | cut -d" " -f1)
+  mem_used=$(echo "$mem_line" | grep -o -P "\d+\.\d+g? used" | cut -d" " -f1)
+  mem_buff=$(echo "$mem_line" | grep -o -P "\d+\.\d+g? buff" | cut -d" " -f1)
 
-  swap_total=$(echo "$swap_line" | grep -o -P "\d+\.\d+ total" | cut -d" " -f1)
-  swap_free=$(echo "$swap_line" | grep -o -P "\d+\.\d+ free" | cut -d" " -f1)
-  swap_used=$(echo "$swap_line" | grep -o -P "\d+\.\d+ used" | cut -d" " -f1)
-  swap_avail=$(echo "$swap_line" | grep -o -P "\d+\.\d+ avail" | cut -d" " -f1)
+  swap_total=$(echo "$swap_line" | grep -o -P "\d+\.\d+g? total" | cut -d" " -f1)
+  swap_free=$(echo "$swap_line" | grep -o -P "\d+\.\d+g? free" | cut -d" " -f1)
+  swap_used=$(echo "$swap_line" | grep -o -P "\d+\.\d+g? used" | cut -d" " -f1)
+  swap_avail=$(echo "$swap_line" | grep -o -P "\d+\.\d+g? avail" | cut -d" " -f1)
 
   result=$mem_total" "$mem_free" "$mem_used" "$mem_buff" "$swap_total" "$swap_free" "$swap_used" "$swap_avail
   echo "$result" >> mem_report.log # write to log
