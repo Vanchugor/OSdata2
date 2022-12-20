@@ -36,30 +36,32 @@ while [[ "$(ps h $script_pid1 | wc -c)" != "0" || "$(ps h $script_pid2 | wc -c)"
   ### extract script1 process info
   script_line=$(echo "$snapshot_full" | grep $script_pid1 | head -1 | tr -s " ")
 
-  sc_nice=$(echo "$script_line" | cut -d" " -f4)
-  sc_virt=$(echo "$script_line" | cut -d" " -f5)
-  sc_res=$(echo "$script_line" | cut -d" " -f6)
-  sc_shr=$(echo "$script_line" | cut -d" " -f7)
-  sc_st=$(echo "$script_line" | cut -d" " -f8)
-  sc_cpu=$(echo "$script_line" | cut -d" " -f9)
-  sc_mem=$(echo "$script_line" | cut -d" " -f10)
-
-  result=$script_pid1" "$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
-  echo "$result" >> script_report1.log # write to log
+#  sc_nice=$(echo "$script_line" | cut -d" " -f4)
+#  sc_virt=$(echo "$script_line" | cut -d" " -f5)
+#  sc_res=$(echo "$script_line" | cut -d" " -f6)
+#  sc_shr=$(echo "$script_line" | cut -d" " -f7)
+#  sc_st=$(echo "$script_line" | cut -d" " -f8)
+#  sc_cpu=$(echo "$script_line" | cut -d" " -f9)
+#  sc_mem=$(echo "$script_line" | cut -d" " -f10)
+#
+#  result=$script_pid1" "$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
+#  echo "$result" >> script_report1.log # write to log
+  echo "$script_line" >> script_report1.log
 
   ### extract script2 process info
   script_line=$(echo "$snapshot_full" | grep $script_pid2 | head -1 | tr -s " ")
 
-  sc_nice=$(echo "$script_line" | cut -d" " -f4)
-  sc_virt=$(echo "$script_line" | cut -d" " -f5)
-  sc_res=$(echo "$script_line" | cut -d" " -f6)
-  sc_shr=$(echo "$script_line" | cut -d" " -f7)
-  sc_st=$(echo "$script_line" | cut -d" " -f8)
-  sc_cpu=$(echo "$script_line" | cut -d" " -f9)
-  sc_mem=$(echo "$script_line" | cut -d" " -f10)
-
-  result=$script_pid2" "$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
-  echo "$result" >> script_report2.log # write to log
+#  sc_nice=$(echo "$script_line" | cut -d" " -f4)
+#  sc_virt=$(echo "$script_line" | cut -d" " -f5)
+#  sc_res=$(echo "$script_line" | cut -d" " -f6)
+#  sc_shr=$(echo "$script_line" | cut -d" " -f7)
+#  sc_st=$(echo "$script_line" | cut -d" " -f8)
+#  sc_cpu=$(echo "$script_line" | cut -d" " -f9)
+#  sc_mem=$(echo "$script_line" | cut -d" " -f10)
+#
+#  result=$script_pid2" "$sc_nice" "$sc_virt" "$sc_res" "$sc_shr" "$sc_st" "$sc_cpu" "$sc_mem
+#  echo "$result" >> script_report2.log # write to log
+  echo "$script_line" >> script_report2.log
 
   ### extract info about the top five processes
   result=$(echo "$snapshot_head" | tail -5 | awk '{ORS=" "}{print $1" ("$12")"}')
