@@ -1,10 +1,12 @@
 #!/bin/bash
-result=1.0
-poly="100"
+poly=1.0
 sign=1.0
-result=$(echo "$poly/3" | bc -l)
+result=1.0
+for i in {1..500000000}
+do
+   poly=$(echo "$poly * $1" | bc -l)
+   result=$(echo "$result + $sign * ($poly / $i)" | bc -l)
+   sign=$(echo "-1.0 * $sign" | bc -l)
+done
+
 echo "$result"
-#for i in {1..500000000}
-#do
-#   poly=
-#done
