@@ -8,7 +8,7 @@ do
   for (( t = 0; t < 10; t++ ))
   do
     echo "** CURRENT t = $t ** "
-#    { time bash launcher.bash $N; } 2>> sc_data &
-    { time bash launcher.bash $N; } 2>> sc_data
+    { time bash launcher.bash $N; } 2>> sc_data &
+#    { time bash launcher.bash $N; } 2>> sc_data
   done
 done
