@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -n "" > sc_data
-for (( N = 0; N < 20; N++ ))
+for (( N = 1; N < 21; N++ ))
 do
   echo "**** CURRENT N = $N **** "
   echo "**** CURRENT N = $N **** " >> sc_data
