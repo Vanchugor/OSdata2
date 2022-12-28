@@ -1,6 +1,9 @@
 #!/bin/bash
 
-for (( N = 0; N < $1; N++ ))
+delta=0.01
+point=0.0
+for (( i = 0; i < $1; i++ ))
 do
-   { time $(./script $N); } > sc_data
+  bash script.bash $point
+  point=$(echo "$point+$delta" | tr -d $'\r' | bc -l)
 done
