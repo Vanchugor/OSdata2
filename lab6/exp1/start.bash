@@ -11,4 +11,5 @@ do
     { time bash launcher.bash $N; } 2>> sc_data &
 #    { time bash launcher.bash $N; } 2>> sc_data
   done
+#  wait
 done
