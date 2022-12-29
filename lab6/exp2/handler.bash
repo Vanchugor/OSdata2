@@ -3,7 +3,7 @@
 os_data_file="os_data_$2_t$1.txt"
 echo -n "" > $os_data_file
 
-data_file="data_$2_t$1.txt"
+data_file="data_$2/data_$2_t$1.txt"
 
 cpu_data=""
 mem_total_data=""
